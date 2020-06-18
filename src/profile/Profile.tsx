@@ -32,30 +32,6 @@ export default function Profile(props: RouteComponentProps) {
 
     const errorHandler = useErrorHandler()
 
-    const loadProvinces = async () => {
-        try {
-            const result = await getProvinces()
-            setProvinces(result)
-        } catch (error) {
-            errorHandler.processRestValidations(error)
-        }
-    }
-
-    const loadProfile = async () => {
-        try {
-            const result = await getCurrentProfile()
-
-            setAddress(result.address)
-            setEmail(result.email)
-            setName(result.name)
-            setPhone(result.phone)
-            setPicture(result.picture)
-            setProvince(result.province)
-
-        } catch (error) {
-            errorHandler.processRestValidations(error)
-        }
-    }
 
     const uploadPicture = async (image: string) => {
         try {
@@ -95,9 +71,33 @@ export default function Profile(props: RouteComponentProps) {
     }
 
     useEffect(() => {
+        const loadProvinces = async () => {
+            try {
+                const result = await getProvinces()
+                setProvinces(result)
+            } catch (error) {
+                errorHandler.processRestValidations(error)
+            }
+        }
+
+        const loadProfile = async () => {
+            try {
+                const result = await getCurrentProfile()
+
+                setAddress(result.address)
+                setEmail(result.email)
+                setName(result.name)
+                setPhone(result.phone)
+                setPicture(result.picture)
+                setProvince(result.province)
+
+            } catch (error) {
+                errorHandler.processRestValidations(error)
+            }
+        }
         void loadProvinces()
         void loadProfile()
-    }, [])
+    }, [errorHandler])
 
     return (
         <GlobalContent>

@@ -12,6 +12,9 @@ import Welcome from "../welcome/Welcome"
 import "./App.css"
 import Menu from "./Menu"
 import Toolbar from "./Toolbar"
+import Ads from "./Ads/Ads"
+import AdsAdmin from "../ads/AdsAdmin"
+import Delete from "../ads/Delete"
 
 export default function App() {
   return (
@@ -30,15 +33,19 @@ export default function App() {
               <Menu />
             </td>
             <td id="content" className="app_content">
-              <Route exact path="/" component={Welcome} />
-              <Route exact path="/login" component={Login} />
-              <Route path="/newUser" component={Register} />
-              <LoggedInRoute path="/info" component={Info} />
-              <LoggedInRoute path="/password" component={Password} />
-              <LoggedInRoute path="/profile" component={Profile} />
-              <LoggedInRoute path="/pets" component={Pets} />
-              <LoggedInRoute path="/editPet" component={NewPet} />
-              <LoggedInRoute path="/editPet/:id" component={NewPet} />
+              <Ads>
+                <Route exact path="/" component={Welcome} />
+                <Route exact path="/login" component={Login} />
+                <Route path="/newUser" component={Register} />
+                <LoggedInRoute path="/info" component={Info} />
+                <LoggedInRoute path="/password" component={Password} />
+                <LoggedInRoute path="/profile" component={Profile} />
+                  <LoggedInRoute path="/pets" component={Pets} />
+                <LoggedInRoute path="/ads" component={AdsAdmin} />
+                <LoggedInRoute path="/ads/delete" component={Delete} />
+                <LoggedInRoute path="/editPet" component={NewPet} />
+                <LoggedInRoute path="/editPet/:id" component={NewPet} />
+              </Ads>
             </td>
           </tr>
         </tbody>

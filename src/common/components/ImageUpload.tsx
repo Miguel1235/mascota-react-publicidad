@@ -38,7 +38,7 @@ export default function ImageUpload(props: ImageUploadProps) {
                 className="upload"
                 accept="*"
                 onChange={imageSelect}
-                style={{ display: "none" }} />
+                style={{ display: "none" }}/>
         </div>
     )
 }
