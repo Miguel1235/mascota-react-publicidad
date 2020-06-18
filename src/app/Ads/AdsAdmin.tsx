@@ -1,24 +1,24 @@
-import React, { useState} from "react"
+import React, { useState } from "react"
 import { RouteComponentProps } from "react-router-dom"
-import DangerLabel from "../common/components/DangerLabel"
-import ErrorLabel from "../common/components/ErrorLabel"
-import Form from "../common/components/Form"
-import FormAcceptButton from "../common/components/FormAcceptButton"
-import FormButton from "../common/components/FormButton"
-import FormButtonBar from "../common/components/FormButtonBar"
-import FormInput from "../common/components/FormInput"
-import FormTitle from "../common/components/FormTitle"
-import GlobalContent from "../common/components/GlobalContent"
-import ImageUpload from "../common/components/ImageUpload"
-import { useErrorHandler } from "../common/utils/ErrorHandler"
-import { goHome} from "../common/utils/Tools"
+import DangerLabel from "../../common/components/DangerLabel"
+import ErrorLabel from "../../common/components/ErrorLabel"
+import Form from "../../common/components/Form"
+import FormAcceptButton from "../../common/components/FormAcceptButton"
+import FormButton from "../../common/components/FormButton"
+import FormButtonBar from "../../common/components/FormButtonBar"
+import FormInput from "../../common/components/FormInput"
+import FormTitle from "../../common/components/FormTitle"
+import GlobalContent from "../../common/components/GlobalContent"
+import ImageUpload from "../../common/components/ImageUpload"
+import { useErrorHandler } from "../../common/utils/ErrorHandler"
+import { goHome } from "../../common/utils/Tools"
 
-import {addAd,getPictureUrl,uploadPicture} from "../ads/AdsAdminServices"
+import { addAd, getPictureUrl, uploadPicture } from "./adsService"
 
 
 export default function AdsAdmin(props: RouteComponentProps) {
     const [picture, setPicture] = useState("")
-    const [picture64,setPicture64] = useState("")
+    const [picture64, setPicture64] = useState("")
     const [url, setUrl] = useState("")
 
     const errorHandler = useErrorHandler()
@@ -28,22 +28,22 @@ export default function AdsAdmin(props: RouteComponentProps) {
         if (!url) {
             errorHandler.addError("Link", "No puede estar vacío")
         }
-        if (!picture){
+        if (!picture) {
             errorHandler.addError("Link", "No puede estar vacío")
         }
         if (errorHandler.hasErrors()) {
             return
         }
         try {
-            await addAd(picture64,url)
+            await addAd(picture64, url)
             goHome(props)
         } catch (error) {
             errorHandler.processRestValidations(error)
         }
     }
-    const uploadImage=async (image:string)=>{
+    const uploadImage = async (image: string) => {
         try {
-            const result = await uploadPicture({image,})
+            const result = await uploadPicture({ image, })
             setPicture(result.id)
             setPicture64(image)
         } catch (error) {

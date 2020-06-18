@@ -13,8 +13,8 @@ import "./App.css"
 import Menu from "./Menu"
 import Toolbar from "./Toolbar"
 import Ads from "./Ads/Ads"
-import AdsAdmin from "../ads/AdsAdmin"
-import Delete from "../ads/Delete"
+import AdsAdmin from "./Ads/AdsAdmin"
+import Delete from "./Ads/Delete"
 
 export default function App() {
   return (
@@ -40,7 +40,7 @@ export default function App() {
                 <LoggedInRoute path="/info" component={Info} />
                 <LoggedInRoute path="/password" component={Password} />
                 <LoggedInRoute path="/profile" component={Profile} />
-                  <LoggedInRoute path="/pets" component={Pets} />
+                <LoggedInRoute path="/pets" component={Pets} />
                 <LoggedInRoute path="/ads" component={AdsAdmin} />
                 <LoggedInRoute path="/ads/delete" component={Delete} />
                 <LoggedInRoute path="/editPet" component={NewPet} />

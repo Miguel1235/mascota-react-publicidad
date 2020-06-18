@@ -1,22 +1,23 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react"
 import { RouteComponentProps } from "react-router-dom"
-import DangerLabel from "../common/components/DangerLabel"
-import ErrorLabel from "../common/components/ErrorLabel"
-import Form from "../common/components/Form"
-import FormDeleteButton from "../common/components/FormDeleteButton"
-import FormButton from "../common/components/FormButton"
-import FormButtonBar from "../common/components/FormButtonBar"
-import FormTitle from "../common/components/FormTitle"
-import GlobalContent from "../common/components/GlobalContent"
-import { useErrorHandler } from "../common/utils/ErrorHandler"
-import { goHome } from "../common/utils/Tools"
-import {getAds,deleteAd,IAd} from "../app/Ads/adsService"
-import "../styles.css"
+import DangerLabel from "../../common/components/DangerLabel"
+import ErrorLabel from "../../common/components/ErrorLabel"
+import Form from "../../common/components/Form"
+import FormDeleteButton from "../../common/components/FormDeleteButton"
+import FormButton from "../../common/components/FormButton"
+import FormButtonBar from "../../common/components/FormButtonBar"
+import FormTitle from "../../common/components/FormTitle"
+import GlobalContent from "../../common/components/GlobalContent"
+import { useErrorHandler } from "../../common/utils/ErrorHandler"
+import { goHome } from "../../common/utils/Tools"
+import { getAds, deleteAd, IAd } from "./adsService"
+import "../../styles.css"
+
 
 export default function Delete(props: RouteComponentProps) {
-    const [ads ,setAds]=useState<IAd[]>([])
-    const [ad,setAd]=useState<number>(0)
+    const [ads, setAds] = useState<IAd[]>([])
+    const [ad, setAd] = useState<number>(0)
 
     const errorHandler = useErrorHandler()
 
@@ -33,7 +34,7 @@ export default function Delete(props: RouteComponentProps) {
     }
 
     useEffect(() => {
-        const loadAds= async () => {
+        const loadAds = async () => {
             try {
                 const result = await getAds()
                 setAds(result)
@@ -42,7 +43,7 @@ export default function Delete(props: RouteComponentProps) {
             }
         }
         void loadAds()
-    },[errorHandler])
+    }, [errorHandler])
 
     return (
         <GlobalContent>
@@ -54,9 +55,9 @@ export default function Delete(props: RouteComponentProps) {
                     <label>Publicidad</label>
                     <select
                         value={ad}
-                        onChange={e =>setAd(Number(e.target.value))}
+                        onChange={e => setAd(Number(e.target.value))}
                         className={errorHandler.getErrorClass("ad", "form-control")}>
-                        {ads.map((p,i) => <option key={i} value={i}>{p.url}</option>)}
+                        {ads.map((p, i) => <option key={i} value={i}>{p.url}</option>)}
                     </select>
                     <ErrorLabel message={errorHandler.getErrorText("ad")} />
                 </div>
