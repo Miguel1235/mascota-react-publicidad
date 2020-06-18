@@ -11,6 +11,11 @@ npm start
 
 Desde un browser debemos abrir [localhost:4200](http://localhost:4200/)
 
+## Publicidad
+
+Para poder ver el menu de publicidad tenemos que haber iniciado sesi?n con cuenta de administrador
+Al hacer click en la publicidad nos llevara a la pagina de la misma
+
 ## VSCode
 
 Este proyecto utiliza eslint
